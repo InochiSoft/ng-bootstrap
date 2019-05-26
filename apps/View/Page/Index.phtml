@@ -1,0 +1,78 @@
+<?php
+    $viewType = isset($this->viewType) ? $this->viewType : '';
+    $viewTitle = isset($this->viewTitle) ? $this->viewTitle : '';
+    $viewContent = isset($this->viewContent) ? $this->viewContent : '';
+?>
+<h1><?php echo $viewTitle ?></h1>
+<div class="content">
+<?php 
+    /* Menyeleksi kondisi berdasarkan $viewType */
+    if ($viewType == 'tentang'){
+        echo $viewContent;
+    } else if ($viewType == 'kontak'){
+?>
+    <form method="POST">
+        <table class="table">
+            <tr>
+                <td width="180">Nama Lengkap</td>
+                <td width="30">:</td>
+                <td><input class="form-control" type="text" name="fullname" placeholder="Nama Lengkap" /></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td width="30">:</td>
+                <td><input class="form-control" type="email" name="email" placeholder="Email" /></td>
+            </tr>
+            <tr>
+                <td>Pesan</td>
+                <td width="30">:</td>
+                <td><textarea class="form-control" rows="2" name="message" placeholder="Pesan"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="3" class="text-center"><input type="submit" class="btn btn-primary" name="send" value="Kirim" /></td>
+            </tr>
+        </table>
+    </form>
+<?php
+    /* Mengambil nilai $viewData */
+    $viewData = isset($this->viewData) ? $this->viewData : null;
+    if ($viewData){
+        /* Menampilkan isi dari tabel tblkontak pada View */
+?>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Pesan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
+        foreach ($viewData as $item){
+?>
+            <tr>
+                <td><?php echo $item['id'] ?></td>
+                <td><?php echo $item['nama'] ?></td>
+                <td><?php echo $item['email'] ?></td>
+                <td><?php echo $item['pesan'] ?></td>
+                <td>
+                    <form method="POST" id="form-delete-<?php echo $item['id'] ?>">
+                        <input type="submit" class="btn btn-danger" id="delete-<?php echo $item['id'] ?>" name="delete-<?php echo $item['id'] ?>" value="Hapus" />
+                    </form>
+                </td>
+            </tr>
+<?php
+        }
+?>
+            </tbody>
+        </table>
+<?php        
+    }
+?>
+<?php } else { ?>
+
+<?php } ?>
+</div>

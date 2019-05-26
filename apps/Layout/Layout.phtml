@@ -1,0 +1,63 @@
+<?php
+    $config = $this->config;
+    $viewTitle = isset($this->viewTitle) ? $this->viewTitle : "";
+    $viewDescription = isset($this->viewDescription) ? $this->viewDescription : "";
+    $viewImage = isset($this->viewImage) ? $this->viewImage : "";
+    $viewKeywords = isset($this->viewKeywords) ? $this->viewKeywords : "";
+    
+    $baseUrl = \NG\Uri::baseUrl();
+    $siteName = $config['SITE_NAME'];
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="image" content="<?php echo $viewImage; ?>">
+    <meta name="keywords" content="<?php echo $viewKeywords; ?>" />
+    <meta name="description" content="<?php echo $viewDescription ?>" />
+    <title><?php echo $viewTitle . ' - ' . $siteName ?></title>
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $baseUrl ?>asset/css/style.css" />
+</head>
+<body>
+    <section class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="<?php echo $baseUrl ?>"><?php echo $siteName ?></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $baseUrl ?>halaman/tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo $baseUrl ?>halaman/kontak">Kontak</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Artikel
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?php echo $baseUrl ?>artikel/artikel-1">Artikel 1</a>
+                            <a class="dropdown-item" href="<?php echo $baseUrl ?>artikel/artikel-2">Artikel 2</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section class="main-content">
+        <?php 
+            /* rendering View */
+            $this->render(); 
+        ?>
+    </section>
+    <script type="text/javascript" src="<?php echo $baseUrl ?>assets/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl ?>assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo $baseUrl ?>asset/js/script.js"></script>
+</body>
+</html>
